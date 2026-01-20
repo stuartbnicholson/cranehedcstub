@@ -1,0 +1,6 @@
+name=cstub
+author=cranehed
+description=Code your c game!
+bundleID=com.cranehed.cstub
+version=0.1
+buildNumber=001

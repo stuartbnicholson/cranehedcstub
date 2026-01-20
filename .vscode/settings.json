@@ -1,0 +1,13 @@
+{
+    "files.associations": {
+    },
+    "makefile.configureOnOpen": false,
+    "terminal.integrated.env.linux": {
+        "GTK_PATH": null,
+        "GIO_MODULE_DIR": null
+    },
+    "themeswitcher.mappings": [
+        { "time": "08:00", "theme": "Solarized Light", "iconTheme": "vs-seti" },
+        { "time": "18:30", "theme": "Solarized Dark", "iconTheme": "vs-seti" },
+    ],
+}

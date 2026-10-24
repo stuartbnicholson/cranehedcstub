@@ -1,7 +1,7 @@
 HEAP_SIZE      = 8388208
 STACK_SIZE     = 61800
 
-PRODUCT = cstub.pdx
+PRODUCT = craneheadcstub.pdx
 
 # Locate the SDK
 SDK = /home/snic/PlaydateSDK
@@ -12,19 +12,19 @@ SDK = /home/snic/PlaydateSDK
 ######
 
 VPATH += src
-VPATH += include
+VPATH += include ../cranehedLib/include
 
 # List C source files here
 SRC = $(wildcard src/*.c)
 
 # List all user directories here
-UINCDIR = include
+UINCDIR = include ../cranehedLib/include
 
 # List user asm files
 UASRC = 
 
 # List all user C define here, like -D_DEBUG=1
-UDEFS = -fsingle-precision-constant \
+UDEFS = -std=c2x -fsingle-precision-constant \
       -Wuninitialized -Wall -Wextra -pedantic-errors \
       -Wstrict-prototypes -Wshadow -Wundef -Wdouble-promotion \
       -Wno-unused-function -Wno-unused-but-set-variable -Wno-unused-variable \
@@ -52,13 +52,19 @@ clean:
 	rm -fR Source/pdex.dll
 	rm -fR Source/pdex.elf
 
-# Release build that strips debug symbols
-release: all
+# Release build that increments build number and strips debug symbols
+release:
+	@echo "Incrementing build number..."
+	@awk -F= '/^buildNumber=/ { printf "buildNumber=%03d\n", $$2 + 1; next } { print }' Source/pdxinfo > Source/pdxinfo.tmp && mv Source/pdxinfo.tmp Source/pdxinfo
+	@$(MAKE) build_release
+
+build_release: all
 	@echo "Stripping debug symbols..."
 	-strip --strip-unneeded Source/pdex.so 2>/dev/null || true
 	-arm-none-eabi-strip --strip-unneeded Source/pdex.elf 2>/dev/null || true
 	@echo "Repacking with stripped binaries..."
 	$(SDK)/bin/pdc -sdkpath $(SDK) Source $(PRODUCT)
+	zip -r $(PRODUCT).zip $(PRODUCT)/ 
 
 # Install to device
 install: release

@@ -7,7 +7,7 @@
             "request": "launch",
             "program": "/home/snic/PlaydateSDK/bin/PlaydateSimulator",
             "args": [
-                "${workspaceFolder}/cstub.pdx"
+                "${workspaceFolder}/cranehedcstub.pdx"
             ],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",

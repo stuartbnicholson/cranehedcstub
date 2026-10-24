@@ -4,6 +4,7 @@
             "name": "Linux",
             "includePath": [
                 "${workspaceFolder}/**",
+                "${workspaceFolder}/../cranehedLib/include",
                 "~/PlaydateSDK/C_API"
             ],
             "defines": [

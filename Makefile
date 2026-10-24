@@ -1,7 +1,7 @@
 HEAP_SIZE      = 8388208
 STACK_SIZE     = 61800
 
-PRODUCT = craneheadcstub.pdx
+PRODUCT = cranehedcstub.pdx
 
 # Locate the SDK
 SDK = /home/snic/PlaydateSDK
@@ -15,7 +15,16 @@ VPATH += src
 VPATH += include ../cranehedLib/include
 
 # List C source files here
-SRC = $(wildcard src/*.c)
+SRC = $(wildcard src/*.c) \
+      ../cranehedLib/src/gameBridge.c \
+      ../cranehedLib/src/genericPool.c \
+      ../cranehedLib/src/particle.c \
+      ../cranehedLib/src/particleManager.c \
+      ../cranehedLib/src/playdateSquad.c \
+      ../cranehedLib/src/rng.c \
+      ../cranehedLib/src/utility.c \
+      ../cranehedLib/src/uint32StringEncoder.c
+# $(wildcard ../cranehedLib/src/*.c)
 
 # List all user directories here
 UINCDIR = include ../cranehedLib/include
